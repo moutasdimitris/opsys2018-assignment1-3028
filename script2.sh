@@ -1,9 +1,9 @@
 #! bin/bash
 echo "Give me the file:"
-echo "-------------------"
+echo "-------------------------"
 read file
 if [ -f $file ] ;
-	then echo "File exists.Opening.."
+	then echo "File exists.Opening..."
   if [ ! -d ~/Desktop/temp_git_repos ]; then
   mkdir -p ~/Desktop/temp_git_repos
   fi
@@ -25,14 +25,13 @@ else
 	done
 echo "File exists.Opening.."
 fi
-echo "---------------------"
-echo "START"
+echo "-------------------------"
+echo "----------START----------"
 #READ TXT FILES AND TAKE THE URL TO GITHUB.
 if [ ! -d ~/Desktop/assignments ];
 then mkdir -p ~/Desktop/assignments
 fi
 cd ~/Desktop/assignments
-
 for file1 in  ~/Desktop/git_repos/*.txt; do
  while IFS=$'\n' read f; do
 if [[ $f == "https"* ]]; then
@@ -55,6 +54,7 @@ done < "$file1"
 done
 
 for file2 in ~/Desktop/assignments/*; do
+str=`echo "$file2" | cut -d'/' -f 6`
 echo -e "\e[4m$str:\e[0m"
 dir=`find $file2/* -maxdepth 0 -type d | wc -l`
 txt=`find $file2/* -type f -name '*.txt' | wc -l`

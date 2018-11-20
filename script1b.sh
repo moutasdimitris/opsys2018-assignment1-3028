@@ -23,11 +23,12 @@ else
 fi
 echo "------------------------------"
 
-
+echo "------------START-------------"
 #CHECK CONNECTION WITH WEBSITES.
 #CREATE ALL FILES TO SAVE WEBSITES CONTENTS.
 > ~/Desktop/web_con_b/status.txt
 > ~/Desktop/web_con_b/online_web.txt
+
 while IFS=$'\n' read LINE;
 do
 if [[ ! $LINE == "#"* ]]; then
@@ -35,15 +36,18 @@ if [[ ! $LINE == "#"* ]]; then
 	str=`echo "$LINE" | cut -d'/' -f 3`
 	if [[ $status == "200" ]]; then
 		echo $LINE >> ~/Desktop/web_con_b/online_web.txt
-  fi
+		echo "$LINE INIT"
+	else
+		echo "$LINE FAILED"
+	fi
 fi
 done < $file
 echo "------------------------------"
 
 #DOWNLOAD WEBSITES CONTENTS
 cd ~/Desktop/web_con_b
-wget -b -i ~/Desktop/web_con_b/online_web.txt > /dev/null
-rm "wget-log"
+line_num=`wc -l < ~/Desktop/web_con_b/online_web.txt`
+gnome 
 
 
 
@@ -52,6 +56,6 @@ echo "Website that have changed:"
 echo "++++++++++++++++++++++++++"
 cat ~/Desktop/web_con_b/status.txt
 fi
-rm ~/Desktop/web_con_b/online_web.txt
-rm ~/Desktop/web_con_b/status.txt
-echo "------END------"
+#rm ~/Desktop/web_con_b/online_web.txt
+#rm ~/Desktop/web_con_b/status.txt
+echo "-------------END--------------"
