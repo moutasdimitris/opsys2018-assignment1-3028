@@ -15,7 +15,7 @@ echo "File exists.Opening.."
 fi
 
 #MAKE FOLDER TO SAVE WEBSITES FILES.
-dir_name="/home/$USER/Desktop/web_con_a"
+dir_name="~/Desktop/web_con_a"
 if [ ! -f $dir_name ];
 	then mkdir -p $dir_name
 else
