@@ -1,4 +1,8 @@
 #! bin/bash
+func(){
+	str=`echo "$1" | cut -d'/' -f 3`
+	curl -sS $1 > ~/Desktop/web_con_b/"$str".txt
+}
 echo "Give me the file:"
 echo "------------------------------"
 read file #TAKE THE PATH TO FILE.
@@ -36,18 +40,24 @@ if [[ ! $LINE == "#"* ]]; then
 	str=`echo "$LINE" | cut -d'/' -f 3`
 	if [[ $status == "200" ]]; then
 		echo $LINE >> ~/Desktop/web_con_b/online_web.txt
-		echo "$LINE INIT"
-	else
-		echo "$LINE FAILED"
-	fi
+		if [ -f  ~/Desktop/web_con_b/"$str".txt ]; then
+			curl -sS $LINE > /tmp/"$str".txt
+			status1=`cmp -b ~/Desktop/web_con_b/"$str".txt /tmp/"$str".txt`
+			if [[ ! $status1 == "" ]]; then
+				echo $LINE >> ~/Desktop/web_con_b/status.txt
+				rm ~/Desktop/web_con_b/"$str".txt
+				mv /tmp/"$str".txt ~/Desktop/web_con_b/
+			fi
+else
+			echo "$LINE INIT"
+			func "$LINE" &
+		fi
+else
+	echo "$LINE FAILED"
+fi
 fi
 done < $file
 echo "------------------------------"
-
-#DOWNLOAD WEBSITES CONTENTS
-cd ~/Desktop/web_con_b
-line_num=`wc -l < ~/Desktop/web_con_b/online_web.txt`
-gnome 
 
 
 
@@ -56,6 +66,6 @@ echo "Website that have changed:"
 echo "++++++++++++++++++++++++++"
 cat ~/Desktop/web_con_b/status.txt
 fi
-#rm ~/Desktop/web_con_b/online_web.txt
-#rm ~/Desktop/web_con_b/status.txt
+rm ~/Desktop/web_con_b/status.txt
+rm ~/Desktop/web_con_b/online_web.txt
 echo "-------------END--------------"
