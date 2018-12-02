@@ -77,9 +77,4 @@ echo -e "Number of other files: \e[31m$sd\e[0m"
 echo "file is $file2"
 check_structure $file2
 done
-
-
-
-
-
 echo "----------End----------"
