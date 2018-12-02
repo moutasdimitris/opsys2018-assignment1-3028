@@ -1,4 +1,15 @@
 #! bin/bash
+check_structure(){
+	if [ -f $1/script1a.sh ]; then
+	if [ -f $1/script1b.sh ]; then
+		if [ -f $1/script2.sh ]; then
+			echo -e "\e[38:5:42mDirectory structure is OK\e[39m "
+		fi
+	fi
+else
+	echo -e "\e[31mDirectory structure is NOT OK\e[0m"
+fi
+		}
 echo "Give me the file:"
 echo "-------------------------"
 read file
@@ -63,6 +74,8 @@ sd=$(( $other-$txt-$dir ))
 echo -e "Number of directories: \e[31m$dir\e[0m"
 echo -e "Number of txt files: \e[31m$txt\e[0m"
 echo -e "Number of other files: \e[31m$sd\e[0m"
+echo "file is $file2"
+check_structure $file2
 done
 
 
