@@ -60,7 +60,6 @@ done < $file
 echo "------------------------------"
 
 
-
 if [[ -s ~/Desktop/web_con_b/status.txt ]]; then
 echo "Website that have changed:"
 echo "++++++++++++++++++++++++++"
