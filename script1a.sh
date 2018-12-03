@@ -1,21 +1,18 @@
 #! bin/bash
-echo "Give me the file:"
-echo "------------------------------"
-read file #TAKE THE PATH TO FILE.
-if [ -f $file ];
+FILE=$1
+if [ -f $FILE ];
 	then echo "File exists.Opening.."
 else
-	until [ -f $file ];
+	until [ -f $FILE ];
 		do
 		echo "File not exists."
 		echo "Please give me the right path."
-		read file
 	done
 echo "File exists.Opening.."
 fi
 
 #MAKE FOLDER TO SAVE WEBSITES FILES.
-dir_name="~/Desktop/web_con_a"
+dir_name=~/Desktop/web_con_a
 if [ ! -f $dir_name ];
 	then mkdir -p $dir_name
 else
@@ -49,7 +46,7 @@ if [[ ! $LINE == "#"* ]]; then
 		echo "$LINE FAILED"
 	fi
 fi
-done < "$file"
+done < "$FILE"
 echo "------------------------------"
 
 if [[ -s ~/Desktop/web_con_a/status.txt ]]; then

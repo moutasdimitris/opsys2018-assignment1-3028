@@ -3,23 +3,20 @@ func(){
 	str=`echo "$1" | cut -d'/' -f 3`
 	curl -sS $1 > ~/Desktop/web_con_b/"$str".txt
 }
-echo "Give me the file:"
-echo "------------------------------"
-read file #TAKE THE PATH TO FILE.
-if [ -f $file ];
+FILE=$1
+if [ -f $FILE ];
 	then echo "File exists.Opening.."
 else
-	until [ -f $file ];
+	until [ -f $FILE ];
 		do
 		echo "File not exists."
 		echo "Please give me the right path."
-		read file
 	done
 echo "File exists.Opening.."
 fi
 
 #MAKE FOLDER TO SAVE WEBSITES FILES.
-dir_name="/home/$USER/Desktop/web_con_b"
+dir_name=~/Desktop/web_con_b
 if [ ! -f $dir_name ];
 	then mkdir -p $dir_name
 else
@@ -56,7 +53,7 @@ else
 	echo "$LINE FAILED"
 fi
 fi
-done < $file
+done < $FILE
 echo "------------------------------"
 
 
