@@ -45,7 +45,7 @@ for file1 in  ~/Desktop/git_repos/*.txt; do
 if [[ $f == "https"* ]]; then
   git ls-remote $f -q
   if [[ $? == "0" ]]; then
-    str=`echo "$f" | cut -d'/' -f 4`
+    str=`echo "$f" | cut -d'/' -f 5`
   if [ ! -d ~/Desktop/assignments/$str ];
    then mkdir  ~/Desktop/assignments/$str
   else
