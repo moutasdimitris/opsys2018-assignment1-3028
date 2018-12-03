@@ -71,7 +71,6 @@ sd=$(( $other-$txt-$dir ))
 echo -e "Number of directories: \e[31m$dir\e[0m"
 echo -e "Number of txt files: \e[31m$txt\e[0m"
 echo -e "Number of other files: \e[31m$sd\e[0m"
-echo "file is $file2"
 check_structure $file2
 done
 echo "----------End----------"
