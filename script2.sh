@@ -1,20 +1,21 @@
-#! bin/bash
+#! /usr/bin/bash
+FILE=$1
 check_structure(){
-	if [ -f $1/script1a.sh ]; then
-	if [ -f $1/script1b.sh ]; then
-		if [ -f $1/script2.sh ]; then
+	if [ -f $1/dataA.txt ]; then
+	if [ -d $1/more ]; then
+		if [ -f $1/more/dataB.txt ]; then
+			if [ -f $1/more/dataC.txt ]; then
 			echo -e "\e[38:5:42mDirectory structure is OK\e[39m "
 		fi
+	fi
 	fi
 else
 	echo -e "\e[31mDirectory structure is NOT OK\e[0m"
 fi
 		}
-echo "Give me the file:"
-echo "-------------------------"
-read file
-if [ -f $file ] ;
-	then echo "File exists.Opening..."
+
+if [ -f $FILE ]; then
+  echo "File exists.Opening..."
   if [ ! -d ~/Desktop/temp_git_repos ]; then
   mkdir -p ~/Desktop/temp_git_repos
   fi
@@ -22,17 +23,15 @@ if [ -f $file ] ;
   mkdir -p ~/Desktop/git_repos
   fi
   cd ~/Desktop/temp_git_repos
-  tar -xvzf $file > /dev/null
+  tar -xvzf $FILE > /dev/null
   find ~/Desktop/temp_git_repos -type f -name "*.txt" | while read txt; do
     mv $txt ~/Desktop/git_repos
   done
  rm -rf ~/Desktop/temp_git_repos
 else
-	until [ -f $file ];
-		do
+	until [ -f $FILE ];do
 		echo "File not exists."
 		echo "Please give me the right path."
-		read file
 	done
 echo "File exists.Opening.."
 fi
@@ -77,9 +76,4 @@ echo -e "Number of other files: \e[31m$sd\e[0m"
 echo "file is $file2"
 check_structure $file2
 done
-
-
-
-
-
 echo "----------End----------"
