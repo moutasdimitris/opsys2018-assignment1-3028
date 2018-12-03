@@ -30,11 +30,8 @@ if [ -f $FILE ]; then
   done
  rm -rf ~/Desktop/temp_git_repos
 else
-	until [ -f $FILE ];do
-		echo "File not exists."
-		echo "Please give me the right path."
-	done
-echo "File exists.Opening.."
+	echo "File not exists."
+	exit $?;
 fi
 echo "-------------------------"
 echo "----------START----------"
