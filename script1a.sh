@@ -1,14 +1,9 @@
 #! bin/bash
 FILE=$1
-if [ -f $FILE ];
-	then echo "File exists.Opening.."
+if [ -f $FILE ]; then
+     echo "File exists.Opening.."
 else
-	until [ -f $FILE ];
-		do
-		echo "File not exists."
-		echo "Please give me the right path."
-	done
-echo "File exists.Opening.."
+     echo "File not exists."
 fi
 
 #MAKE FOLDER TO SAVE WEBSITES FILES.
