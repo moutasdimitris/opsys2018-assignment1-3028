@@ -14,6 +14,7 @@ else
 fi
 		}
 
+
 if [ -f $FILE ]; then
   echo "File exists.Opening..."
   if [ ! -d ~/Desktop/temp_git_repos ]; then
