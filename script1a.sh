@@ -4,6 +4,7 @@ if [ -f $FILE ]; then
      echo "File exists.Opening.."
 else
      echo "File not exists."
+     exit $?;
 fi
 
 #MAKE FOLDER TO SAVE WEBSITES FILES.
