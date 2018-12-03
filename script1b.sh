@@ -4,15 +4,11 @@ func(){
 	curl -sS $1 > ~/Desktop/web_con_b/"$str".txt
 }
 FILE=$1
-if [ -f $FILE ];
-	then echo "File exists.Opening.."
+if [ -f $FILE ]; then
+  	echo "File exists.Opening.."
 else
-	until [ -f $FILE ];
-		do
-		echo "File not exists."
-		echo "Please give me the right path."
-	done
-echo "File exists.Opening.."
+	echo "File not exists."
+	exit $?;
 fi
 
 #MAKE FOLDER TO SAVE WEBSITES FILES.
